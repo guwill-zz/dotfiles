@@ -57,5 +57,5 @@ nnoremap : ;
 nnoremap J 10j
 nnoremap K 10k
 nnoremap U <C-R>
-imap <S-Tab> <BS><BS><BS><BS>
+imap <S-Tab> <C-o><<
 set pastetoggle=<F1>
