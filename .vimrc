@@ -1,6 +1,7 @@
-"execute pathogen#infect()
-syntax enable
-"colorscheme
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 set autochdir
 set backspace=indent,eol,start
 set background=dark
@@ -33,6 +34,7 @@ set wrap "Wrap lines
 
 set foldmethod=syntax
 set foldnestmax=2
+set laststatus=2
 
 func! DeleteTrailingWS()
   exe "normal mz"
