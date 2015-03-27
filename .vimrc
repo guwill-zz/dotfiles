@@ -59,3 +59,4 @@ nnoremap K 10k
 imap <S-Tab> <BS><BS><BS><BS>
 nnoremap U <C-R>
 set pastetoggle=<F1>
+
