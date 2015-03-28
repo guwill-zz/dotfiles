@@ -1,7 +1,5 @@
 # files
 
-conque
-nerdtree
-syntastic
 youcompleteme
 tmux
+syntastic

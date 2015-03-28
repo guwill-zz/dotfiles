@@ -59,3 +59,7 @@ nnoremap K 10k
 nnoremap U <C-R>
 imap <S-Tab> <C-o><<
 set pastetoggle=<F1>
+let NERDTreeShowHidden=1
+command Execnerdtree execute "NERDTree"
+map <F2> :Execnerdtree<CR>
+autocmd Syntax * normal zR
