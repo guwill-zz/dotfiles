@@ -1,5 +1,6 @@
 # files
 
-youcompleteme
+youcompleteme needs updated vim
 tmux
-syntastic
+syntastic doesnt work
+still need to map nerdtree
