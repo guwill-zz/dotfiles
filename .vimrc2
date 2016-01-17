@@ -1,0 +1,125 @@
+execute pathogen#infect()
+syntax enable
+filetype plugin indent on
+let mapleader = ","
+
+colorscheme default
+set omnifunc=syntaxcomplete#Complete
+
+set dictionary='/usr/share/dict/words'
+set spelllang=en_us
+set spell
+
+set autochdir
+set backspace=indent,eol,start
+set background=dark
+set hidden
+set nu
+
+set cursorline
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set showmatch
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+set nocompatible
+set noswapfile
+
+set expandtab
+set shiftwidth=4
+set tabstop=4
+set lbr
+set tw=500
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+"set foldmethod=syntax
+"set foldnestmax=5
+"set foldlevelstart=5
+
+set laststatus=2
+set completeopt-=preview
+
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite * :call DeleteTrailingWS()
+
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+"inoremap <Up>    <NOP>
+"inoremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
+"noremap <Up>    <NOP>
+"noremap <Down>  <NOP>
+
+nnoremap ; :
+nnoremap : ;
+nnoremap J 10j
+nnoremap K 10k
+nnoremap U <C-R>
+nnoremap <Leader>c :noh<Enter>
+imap <S-Tab> <C-o><<
+
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 1
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+autocmd FileType python setlocal omnifunc=jedi#completions
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+"    \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+
+let g:tern_show_signature_in_pum = 1
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ neocomplete#start_manual_complete()
+function! s:check_back_space() "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs=1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
